@@ -1,7 +1,5 @@
 # Aligning Music Transformers with RLHF
 
-# Music Transformer Repository
-
 This repository contains code for preprocessing the Lakh MIDI dataset and the Maestro dataset. It also includes code for pretraining a PaLM (Piano Language Model) on the Maestro dataset. Additionally, it provides code for training a genre classification model. Finally, it offers code to fine-tune either the Anticipatory Transformer by Thickstun or the PaLM model using the genre classification reward model.
 
 ## Setup
