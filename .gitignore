@@ -1,4 +1,4 @@
-/DS_Store
+/.DS_Store
 /data/lmd_matched/
 /data/lmd_processed/
 /data/lmd_tokenized/
@@ -9,6 +9,8 @@
 /anticipation.egg-info/
 /setup.py
 /build/
+/data/__pycache__/
+/model/.DS_Store
 
 
 
