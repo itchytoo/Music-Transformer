@@ -1,6 +1,8 @@
 import requests
 import zipfile
+import tarfile
 import os
+import argparse
 
 def download_and_unzip(url, destination_folder):
     # Check if the destination folder exists, create if not
@@ -29,9 +31,32 @@ def download_and_unzip(url, destination_folder):
             zip_ref.extractall(destination_folder)
         print("Unzipping completed.")
 
+    elif filename.endswith('.tar.gz'):
+        print("Untarring the file...")
+        with tarfile.open(filepath, 'r:gz') as tar_ref:
+            tar_ref.extractall(destination_folder)
+        print("Untarring completed.")
+
 if __name__ == '__main__':
-    # Download the MAESTRO dataset
-    download_and_unzip(
-        url='https://storage.googleapis.com/magentadata/datasets/maestro/v3.0.0/maestro-v3.0.0-midi.zip',
-        destination_folder='data'
-    )
+    parser = argparse.ArgumentParser(description='Download and unzip dataset.')
+    parser.add_argument('--dataset', type=str, choices=['maestro', 'lakh'], default='maestro',
+                        help='Specify the dataset to download')
+    args = parser.parse_args()
+
+    if args.dataset == 'maestro':
+        download_and_unzip(
+            url='https://storage.googleapis.com/magentadata/datasets/maestro/v3.0.0/maestro-v3.0.0-midi.zip',
+            destination_folder='data'
+        )
+
+    elif args.dataset == 'lakh':
+        # get midi files
+        download_and_unzip(
+            url='http://hog.ee.columbia.edu/craffel/lmd/lmd_matched.tar.gz',
+            destination_folder='data'
+        )
+        # get genre labels 
+        download_and_unzip(
+            url='https://www.tagtraum.com/genres/msd_tagtraum_cd1.cls.zip',
+            destination_folder='data'
+        )

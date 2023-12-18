@@ -1,1 +1,14 @@
 /DS_Store
+/data/lmd_matched/
+/data/lmd_processed/
+/data/lmd_tokenized/
+/data/msd_tagtraum_cd1.cls
+/data/genre_labels.csv
+/dev.ipynb
+/anticipation/
+/anticipation.egg-info/
+/setup.py
+/build/
+
+
+
