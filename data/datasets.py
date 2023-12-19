@@ -37,9 +37,9 @@ class MaestroDataset(Dataset):
         # load the tokenized MIDI file and return the tokens as a tensor
         sequence = torch.Tensor(self.tokenizer.load_tokens(self.token_paths[index])['ids'])
         
-        # if it is shorter than self.sequence_length, then pad the sequence with zeros and return it
+        # if it is shorter than self.sequence_length, then pad the sequence with zeros at the start and return it
         if sequence.shape[0] < self.sequence_length:
-            return torch.cat((sequence, torch.zeros(self.sequence_length - sequence.shape[0])))  
+            return torch.cat((torch.zeros(self.sequence_length - sequence.shape[0], sequence)))  
 
         # otherwise, return a random window of length self.sequence_length from the sequence    
         window_start = torch.randint(0, sequence.shape[0] - self.sequence_length, (1,))
@@ -66,6 +66,7 @@ class LakhDataset(Dataset):
 
         # get the paths to all the tokenized MIDI files in the Lakh dataset
         self.token_paths = []
+
         for root, dirs, files in os.walk(root_dir):
             for file in files:
                 hash = file.split('.')[0]

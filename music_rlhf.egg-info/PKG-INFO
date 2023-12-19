@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: music-rlhf
+Version: 1.0
+Summary: Aligning Music Transformers with RLHF
+Author: Guinness Chen
+Author-email: itchytoo@stanford.edu
